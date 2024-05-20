@@ -176,6 +176,30 @@
             width: 100%; /* Adjust width as needed */
         /* Your existing styles for the content section */
         }
+        
+        #glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50px; /* adjust the width and height to your liking */
+  height: 50px;
+  background-color: rgba(255, 255, 255, 0.5); /* adjust the color and opacity to your liking */
+  border-radius: 50%;
+  pointer-events: none; /* ensure the glow doesn't interfere with clicks */
+  transition: transform 0.2s ease-out; /* add a smooth transition effect */
+}
+
+#glow::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.2); /* adjust the color and opacity to your liking */
+  border-radius: 50%;
+  transform: scale(1.5); /* adjust the scale to your liking */
+}
     </style>
 </head>
        <!-- Hitsteps TRACKING CODE - Manual 2024-05-03 - DO NOT CHANGE -->
@@ -366,6 +390,13 @@
 </div>
 
     <script>
+        const glow = document.getElementById('glow');
+
+document.addEventListener('mousemove', (e) => {
+  const x = e.clientX;
+  const y = e.clientY;
+  glow.style.transform = `translate(${x}px, ${y}px)`;
+});
         function toggleDescription(projectId) {
             var projectDescription = document.getElementById(projectId);
             projectDescription.style.display = (projectDescription.style.display === 'block') ? 'none' : 'block';
@@ -385,5 +416,6 @@
             }
         }
     </script>
+<div id="glow"></div>
 </body>
 </html>
